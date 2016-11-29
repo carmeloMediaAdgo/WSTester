@@ -30,14 +30,25 @@ $ ( document ).ready ( function () {
 
     } );
 
+
+
+
     $ ( "#test" ).click ( function () {
         if ( estado != true ) {
-
             result = "No se dispone de datos para realizar la petición";
         } else {
-            result = "Esta es la respuesta";
+            //se envia mediante ajax los parametros a  connection.php y recibimos la respuesta de la peticiónvar xmlhttp = new XMLHttpRequest();
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+
+                }
+                $ ( '#result' ).text( this.response);
+            };
+            xmlhttp.open("GET", "connection.php"+ url.substr ( 0, url.length - 1 ),true);
+            xmlhttp.send();
         }
-        $ ( '#result' ).html ( result );
+
     } );
 
 
