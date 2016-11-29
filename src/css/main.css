@@ -1,0 +1,36 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+
+
+
+.result {
+    height:300px;
+}
+.logo {
+    width: 75px;
+}
+#preview {
+    font-size: 14px;
+}
+#urlFinal
+{
+    font-weight: bold ;
+   height: 100%;
+}
+#result {
+    color:limegreen;
+}
+
+
+
+
+
+
+
+
+
+
