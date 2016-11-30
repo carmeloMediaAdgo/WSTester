@@ -1,4 +1,4 @@
-console.log ( "hola" );
+console.log("WsTester Entrando App...")
 i = 0;
 parametros = {};
 contenido = "";
@@ -37,15 +37,18 @@ $ ( document ).ready ( function () {
         if ( estado != true ) {
             result = "No se dispone de datos para realizar la petición";
         } else {
+
+            $data = "ajax.php" + url.substr ( 0, url.length ) + "ws=" + ws;
+            console.log ( $data );
             //se envia mediante ajax los parametros a  connection.php y recibimos la respuesta de la peticiónvar xmlhttp = new XMLHttpRequest();
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-
+                    $ ( '#result' ).html( this.responseText);
                 }
-                $ ( '#result' ).text( this.response);
+                $ ( '#result' ).html( this.responseText);
             };
-            xmlhttp.open("GET", "connection.php"+ url.substr ( 0, url.length - 1 ),true);
+            xmlhttp.open("GET", $data, true);
             xmlhttp.send();
         }
 
@@ -55,11 +58,10 @@ $ ( document ).ready ( function () {
     function creaLaUrl () {
         url = "?";
         urlAux = "";
-        ws = "http://webservice.com"; //$("#wsUrl").val();
-        console.log ( contador = parametros.length );
+        ws = "https://jsonplaceholder.typicode.com/posts"; //$("#wsUrl").val();
 
         text = "";
-        var x;
+
         for ( x in parametros ) {
             urlAux = x + "=" + parametros[x] + "&";
             url = url + urlAux;
@@ -70,15 +72,9 @@ $ ( document ).ready ( function () {
 
     function showJson () {
 
-        aperturaJson = "{<br>";
-        cierreJson = "}";
-        contenidoParams += name + "= <code>" + value + "</code>"
-        contenido = contenido + '"' + name + '" : "' + value + '",<br>';
-        json = JSON.stringify ( parametros, undefined, "\n" );
-        html = aperturaJson + contenido + cierreJson;
-
-        $ ( "#params" ).html ( json );
-        $ ( "#preview" ).html ( html );
+        json = JSON.stringify ( parametros, null, 4 );
+        console.log ( json );
+        $ ( "#params" ).html ( "<pre>" + json + "</pre>");
         estado = true;
     }
 

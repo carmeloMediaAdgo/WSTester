@@ -1,10 +1,9 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '../vendor/autoload.php';
 
 use \Curl\Curl;
-
 $curl = new Curl();
-$curl->get('https://www.example.com/');
+$curl->get($_GET['ws'] . $_GET['userId']);
 
 if ($curl->error) {
 echo 'Error: ' . $curl->errorCode . ': ' . $curl->errorMessage . "\n";
