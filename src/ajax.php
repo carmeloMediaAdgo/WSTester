@@ -1,9 +1,9 @@
 <?php
-require __DIR__ . '../vendor/autoload.php';
 
+require __DIR__ . '/../vendor/autoload.php';
 use \Curl\Curl;
 $curl = new Curl();
-$curl->get($_GET['ws'] . $_GET['userId']);
+$curl->get($_POST['ws'], $_POST['params'] );
 
 if ($curl->error) {
 echo 'Error: ' . $curl->errorCode . ': ' . $curl->errorMessage . "\n";

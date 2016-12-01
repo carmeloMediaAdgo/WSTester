@@ -16,7 +16,7 @@ $ ( document ).ready ( function () {
                 position: "right-middle",
                 style: "bootstrap",
                 className: 'warning'
-            } );
+            });
 
         } else if ( value == "" ) {
             value.notify ( "Falta Value" );
@@ -31,25 +31,24 @@ $ ( document ).ready ( function () {
     } );
 
 
-
-
     $ ( "#test" ).click ( function () {
         if ( estado != true ) {
             result = "No se dispone de datos para realizar la petición";
         } else {
-
-            $data = "ajax.php" + url.substr ( 0, url.length ) + "ws=" + ws;
-            console.log ( $data );
-            //se envia mediante ajax los parametros a  connection.php y recibimos la respuesta de la peticiónvar xmlhttp = new XMLHttpRequest();
-            var xmlhttp = new XMLHttpRequest();
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    $ ( '#result' ).html( this.responseText);
-                }
-                $ ( '#result' ).html( this.responseText);
+            var params = {
+                "ws" : ws,
+                "params" : parametros,
+                "method" : $( "#method" ).val(),
             };
-            xmlhttp.open("GET", $data, true);
-            xmlhttp.send();
+            $.ajax({
+                data:  params,
+                url:   '/ajax.php',
+                type:  'post',
+                success:  function (response) {
+                    $('#result').html(response);
+                    //$('#result').html('<pre>' + JSON.stringify ( $.parseJSON(response), null, 4  + '</pre>'));
+                }
+            });
         }
 
     } );
