@@ -40,17 +40,17 @@ $ ( document ).ready ( function () {
                 "params" : parametros,
                 "method" : $( "#method" ).val(),
             };
+            console.log(params);
             $.ajax({
                 data:  params,
                 url:   '/ajax.php',
                 type:  'post',
                 success:  function (response) {
                     $('#result').html(response);
-                    //$('#result').html('<pre>' + JSON.stringify ( $.parseJSON(response), null, 4  + '</pre>'));
+
                 }
             });
         }
-
     } );
 
 
