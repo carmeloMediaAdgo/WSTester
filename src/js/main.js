@@ -30,6 +30,16 @@ $ ( document ).ready ( function () {
 
     } );
 
+ //para que consulte el get o lo muestre dependiendo de la opcion
+    $('#method').change(),function () {
+        console.log($('#urlWs').val());
+        if ($('#urlWs').val() == "get") {
+            $('#urlGet').show();
+        } else {
+            $('#urlGet').hide();
+        }
+    }
+
 
     $ ( "#test" ).click ( function () {
         if ( estado != true ) {
@@ -53,7 +63,6 @@ $ ( document ).ready ( function () {
         }
     } );
 
-
     function creaLaUrl () {
         url = "?";
         urlAux = "";
@@ -76,5 +85,8 @@ $ ( document ).ready ( function () {
         $ ( "#params" ).html ( "<pre>" + json + "</pre>");
         estado = true;
     }
+
+
+
 
 } );
