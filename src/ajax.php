@@ -18,6 +18,9 @@ switch ($_POST['method']) {
     case "put" :
         $curl->put($_POST['ws'], $_POST['params']);
         break;
+    case "patch" :
+        $curl->patch($_POST['ws'], $_POST['params']);
+        break;
 }
 
 
