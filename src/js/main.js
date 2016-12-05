@@ -57,7 +57,7 @@ $ ( document ).ready ( function () {
     function creaLaUrl () {
         url = "?";
         urlAux = "";
-        ws = "https://jsonplaceholder.typicode.com/posts"; //$("#wsUrl").val();
+        ws =  $("#wsUrl").val();
 
         text = "";
 
