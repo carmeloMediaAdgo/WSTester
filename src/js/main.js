@@ -1,4 +1,4 @@
-console.log("WsTester Entrando App...")
+console.log ( "WsTester Entrando App..." )
 i = 0;
 parametros = {};
 contenido = "";
@@ -7,7 +7,7 @@ respuesta = "";
 ws = "";
 estado = "";
 $ ( document ).ready ( function () {
-
+    $("#panelResult").hide();
     $ ( "#submit" ).click ( function () {
         name = $ ( "#name" ).val ();
         value = $ ( "#value" ).val ();
@@ -16,7 +16,7 @@ $ ( document ).ready ( function () {
                 position: "right-middle",
                 style: "bootstrap",
                 className: 'warning'
-            });
+            } );
 
         } else if ( value == "" ) {
             value.notify ( "Falta Value" );
@@ -30,43 +30,45 @@ $ ( document ).ready ( function () {
 
     } );
 
- //para que consulte el get o lo muestre dependiendo de la opcion
-    $('#method').change(),function () {
-        console.log($('#urlWs').val());
-        if ($('#urlWs').val() == "get") {
-            $('#urlGet').show();
+    //para que consulte el get o lo muestre dependiendo de la opcion
+    $ ( '#method' ).on ( 'change', function () {
+        console.log ( "hola" );
+        console.log ( this.value );
+        if (this.value == "get" ) {
+            $ ( '#urlGet' ).show ();
         } else {
-            $('#urlGet').hide();
+            $ ( '#urlGet' ).hide ();
         }
-    }
+    })
 
 
     $ ( "#test" ).click ( function () {
+        $("#panelResult").show();
         if ( estado != true ) {
             result = "No se dispone de datos para realizar la petición";
         } else {
             var params = {
                 "ws" : ws,
                 "params" : parametros,
-                "method" : $( "#method" ).val(),
+                "method" : $ ( "#method" ).val (),
             };
-            console.log(params);
-            $.ajax({
-                data:  params,
-                url:   '/ajax.php',
-                type:  'post',
-                success:  function (response) {
-                    $('#result').html(response);
+            console.log ( params );
+            $.ajax ( {
+                data : params,
+                url : '/ajax.php',
+                type : 'post',
+                success: function ( response ) {
+                    $ ( '#result' ).html ( response );
 
                 }
-            });
+            } );
         }
     } );
 
     function creaLaUrl () {
         url = "?";
         urlAux = "";
-        ws =  $("#wsUrl").val();
+        ws = $ ( "#wsUrl" ).val ();
 
         text = "";
 
@@ -82,11 +84,7 @@ $ ( document ).ready ( function () {
 
         json = JSON.stringify ( parametros, null, 4 );
         console.log ( json );
-        $ ( "#params" ).html ( "<pre>" + json + "</pre>");
+        $ ( "#params" ).html ( "<pre>" + json + "</pre>" );
         estado = true;
     }
-
-
-
-
 } );

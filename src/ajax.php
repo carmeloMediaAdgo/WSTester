@@ -10,7 +10,6 @@ switch ($_POST['method']) {
 
     case "get" :
         $curl->get($_POST['ws'], $_POST['params']);
-
         break;
     case "post" :
         $curl->post($_POST['ws'], $_POST['params']);
