@@ -7,7 +7,7 @@ respuesta = "";
 ws = "";
 estado = "";
 $ ( document ).ready ( function () {
-    $("#panelResult").hide();
+    $ ( "#panelResult" ).hide ();
     $ ( "#submit" ).click ( function () {
         name = $ ( "#name" ).val ();
         value = $ ( "#value" ).val ();
@@ -32,37 +32,36 @@ $ ( document ).ready ( function () {
 
     //para que consulte el get o lo muestre dependiendo de la opcion
     $ ( '#method' ).on ( 'change', function () {
-        console.log ( "hola" );
-        console.log ( this.value );
-        if (this.value == "get" ) {
+
+        if ( this.value == "get" ) {
             $ ( '#urlGet' ).show ();
         } else {
             $ ( '#urlGet' ).hide ();
         }
-    })
+    } )
 
 
     $ ( "#test" ).click ( function () {
-        $("#panelResult").show();
+        $ ( "#panelResult" ).show ();
         if ( estado != true ) {
             result = "No se dispone de datos para realizar la petición";
         } else {
             var params = {
-                "ws" : ws,
-                "params" : parametros,
-                "method" : $ ( "#method" ).val (),
+                "ws": ws,
+                "params": parametros,
+                "method": $ ( "#method" ).val (),
             };
-            console.log ( params );
             $.ajax ( {
-                data : params,
-                url : '/ajax.php',
-                type : 'post',
+                data: params,
+                url: '/ajax.php',
+                type: 'post',
                 success: function ( response ) {
                     $ ( '#result' ).html ( response );
-
+                    guardaBBDD ();
                 }
             } );
         }
+
     } );
 
     function creaLaUrl () {
@@ -83,8 +82,30 @@ $ ( document ).ready ( function () {
     function showJson () {
 
         json = JSON.stringify ( parametros, null, 4 );
-        console.log ( json );
+
         $ ( "#params" ).html ( "<pre>" + json + "</pre>" );
         estado = true;
     }
+
+    function guardaBBDD () {
+        console.log ( "aquiero guardar en bbdd" );
+
+        var insertParams = {
+            "url": ws,
+            "json": parametros
+        };
+        console.log ( insertParams );
+        $.ajax ( {
+            data: insertParams,
+            url: './ajaxBD.php',
+            type: 'post',
+            success: function ( response ) {
+                console.log ( response );
+                $ ( '#insert' ).html ( response );
+            }
+        } );
+    }
+
+
 } );
+
