@@ -62,6 +62,7 @@ class ComposerStaticInitbab6a3235f3c9300a3b4f4c71e98fb69
         ),
         'C' => 
         array (
+            'Curl\\' => 5,
             'Carbon\\' => 7,
         ),
     );
@@ -144,6 +145,10 @@ class ComposerStaticInitbab6a3235f3c9300a3b4f4c71e98fb69
         'DeepCopy\\' => 
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
+        ),
+        'Curl\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/php-curl-class/php-curl-class/src/Curl',
         ),
         'Carbon\\' => 
         array (
